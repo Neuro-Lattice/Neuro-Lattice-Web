@@ -50,7 +50,7 @@ const Contact = () => {
   );
 };
 
-import emailjs from '@emailjs/browser';
+
 
 const ValidatedForm = () => {
   const [name, setName] = useState('');
