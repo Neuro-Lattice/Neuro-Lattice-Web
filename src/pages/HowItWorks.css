@@ -1,0 +1,147 @@
+.how-it-works-page {
+  padding-top: 100px;
+}
+
+.header-center {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.process-flow {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.flow-line {
+  position: absolute;
+  left: 28px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary), transparent);
+  opacity: 0.2;
+}
+
+.process-step {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.process-step.open {
+  border-color: var(--accent-primary);
+  background: rgba(15, 23, 42, 0.8);
+  box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.2);
+}
+
+.step-header {
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+}
+
+.step-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  background: rgba(15, 23, 42, 1);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.process-step.open .step-icon-wrapper {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
+.step-icon {
+  color: var(--accent-primary);
+  transition: color 0.3s ease;
+}
+
+.process-step.open .step-icon {
+  color: #020617;
+}
+
+.step-title-group {
+  flex-grow: 1;
+}
+
+.step-number {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.step-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.chevron {
+  color: var(--text-secondary);
+  transition: transform 0.3s ease;
+}
+
+.chevron.rotate {
+  transform: rotate(180deg);
+}
+
+.step-content {
+  overflow: hidden;
+}
+
+.content-inner {
+  padding: 0 24px 24px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (max-width: 640px) {
+  .content-inner {
+    padding-left: 24px;
+  }
+}
+
+.conceptual h4, .math h4 {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.conceptual p {
+  color: var(--text-primary);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+.math {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.math p {
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}

@@ -1,0 +1,254 @@
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.hero-section {
+  padding-top: 160px;
+}
+
+@media (min-width: 1024px) {
+  .hero-grid-layout {
+    grid-template-columns: 1.1fr 0.9fr;
+    text-align: left;
+  }
+}
+
+.hero-grid-layout {
+  display: grid;
+  gap: 64px;
+  align-items: center;
+}
+
+.hero-tagline.left-align {
+  text-align: left;
+  font-size: clamp(3rem, 6vw, 4.5rem); /* Slightly smaller than centered to fit 2 col */
+}
+
+.hero-value-prop.left-align,
+.hero-target.left-align {
+  text-align: left;
+}
+
+.hero-actions-left {
+  display: flex;
+  justify-content: flex-start; /* Left align button */
+  margin-top: 32px;
+}
+
+/* Right Side Stats Visuals */
+.hero-stats-container {
+  padding: 32px;
+  border-radius: 24px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.hero-stat-row {
+  margin-bottom: 28px;
+}
+
+.hero-stat-row:last-child {
+  margin-bottom: 0;
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.stat-highlight-green {
+  color: #10b981;
+  font-weight: 700;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+}
+
+.stat-bar-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+.stat-bar-label {
+  width: 85px;
+  flex-shrink: 0;
+}
+
+.stat-bar-track {
+  flex-grow: 1;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.05); /* Track backdrop */
+  border-radius: 100px;
+  display: flex; /* alignment */
+  align-items: center;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  border-radius: 100px;
+}
+
+.stat-bar-fill.grey {
+  background: #64748b;
+  opacity: 0.6;
+}
+
+.stat-bar-fill.green {
+  background: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+/* Old Section Title - Keep for other sections */
+.section-title-large {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+/* Use Cases */
+.use-cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+.use-case-card {
+  padding: 40px;
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.use-case-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.use-case-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--accent-primary);
+}
+
+.use-case-card h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.use-case-card p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.use-case-meta {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.use-case-meta span {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.use-case-meta span::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+}
+
+/* Audience Grid */
+.audience-grid-new {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.audience-card-new {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+}
+
+.audience-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  background: rgba(56, 189, 248, 0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.audience-info h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.audience-info p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+}
+
+/* Final CTA */
+.final-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.final-actions {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.large {
+  padding: 24px 48px;
+  font-size: 1.25rem;
+}
