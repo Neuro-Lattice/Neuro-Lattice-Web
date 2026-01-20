@@ -13,7 +13,13 @@ export default async function handler(req, res) {
   const privateKey = process.env.EMAILJS_PRIVATE_KEY; // New Requirement
 
   if (!serviceId || !templateId || !publicKey || !privateKey) {
-    return res.status(500).json({ error: 'Missing backend configuration. Need EMAILJS_PRIVATE_KEY.' });
+    const missing = [];
+    if (!serviceId) missing.push('VITE_EMAILJS_SERVICE_ID');
+    if (!templateId) missing.push('VITE_EMAILJS_TEMPLATE_ID');
+    if (!publicKey) missing.push('VITE_EMAILJS_PUBLIC_KEY');
+    if (!privateKey) missing.push('EMAILJS_PRIVATE_KEY');
+    
+    return res.status(500).json({ error: `Backend Config Error. Missing keys: ${missing.join(', ')}` });
   }
 
   // Construct the template parameters exactly as the frontend did
