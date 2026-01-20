@@ -93,7 +93,9 @@ const ValidatedForm = () => {
         setModels('Computer Vision (ResNet, ViT, etc.)');
         setSpend('Under $5k');
       } else {
-        throw new Error(data.error || 'Server rejected request');
+        const errorMsg = data.error || 'Server rejected request';
+        const debugMsg = data.debug ? `\n\nDEBUG INFO:\n${data.debug}` : '';
+        throw new Error(errorMsg + debugMsg);
       }
 
     } catch (error: any) {
