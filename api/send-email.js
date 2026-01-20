@@ -7,10 +7,10 @@ export default async function handler(req, res) {
   const { name, email, company, models, spend } = req.body;
 
   // Read vars from process.env (Server Side)
-  const serviceId = process.env.VITE_EMAILJS_SERVICE_ID;
-  const templateId = process.env.VITE_EMAILJS_TEMPLATE_ID;
-  const publicKey = process.env.VITE_EMAILJS_PUBLIC_KEY;
-  const privateKey = process.env.EMAILJS_PRIVATE_KEY; // New Requirement
+  const serviceId = process.env.VITE_EMAILJS_SERVICE_ID?.trim();
+  const templateId = process.env.VITE_EMAILJS_TEMPLATE_ID?.trim();
+  const publicKey = process.env.VITE_EMAILJS_PUBLIC_KEY?.trim();
+  const privateKey = process.env.EMAILJS_PRIVATE_KEY?.trim(); // New Requirement
 
   if (!serviceId || !templateId || !publicKey || !privateKey) {
     const missing = [];

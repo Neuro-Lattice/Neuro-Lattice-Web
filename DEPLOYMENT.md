@@ -175,18 +175,17 @@ Yes, **IF** you enable the **AllowList**.
 Because originally (Option 1) we were doing it the Client-Side way. When we switched to Backend (Option 2), I kept the names the same **so you wouldn't have to delete and re-enter them in Vercel**. It saves you work!
 
 ### Troubleshooting: "Missing backend configuration"
-**CRITICAL CHECK:**
-The error message appears if **ANY** of the keys are missing.
-Looking at your screenshot, **I only see 1 key** (`EMAILJS_PRIVATE_KEY`).
-You need **ALL 4 KEYS** listed below. If Vercel doesn't have the other 3, it won't work.
+### Troubleshooting: "Missing backend configuration"
+**SOLVED (Based on Screenshot):**
+You added the key to your **Team**, but it is **not linked** to your project.
+1.  Look at your screenshot where it says **"Link to Projects (optional)"**.
+2.  Click that box and select **`neuro-lattice-web`**.
+3.  Click **Save**.
+4.  Then **Redeploy**.
 
-**Required Keys Checklist:**
-1.  `VITE_EMAILJS_SERVICE_ID`
-2.  `VITE_EMAILJS_TEMPLATE_ID`
-3.  `VITE_EMAILJS_PUBLIC_KEY`
-4.  `EMAILJS_PRIVATE_KEY`
+*Alternative:* Go to the **Project** Dashboard -> Settings -> Environment Variables (instead of Team Settings) and add it there.
 
-Add the missing ones and Redeploy!
+### Monitoring the Build
 
 ### Monitoring the Build
 If you see `tsc -b && vite build` in the logs, **that is good**. It means your site is compiling.
