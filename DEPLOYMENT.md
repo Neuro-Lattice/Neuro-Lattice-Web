@@ -153,18 +153,28 @@ Yes, **IF** you enable the **AllowList**.
 | `VITE_EMAILJS_SERVICE_ID` | `service_8kvs4bm` |
 | `VITE_EMAILJS_TEMPLATE_ID` | `template_l3wvfsg` |
 | `VITE_EMAILJS_PUBLIC_KEY` | `PU6cev6f8HWnPz9dz` |
+| `EMAILJS_PRIVATE_KEY` | *(Get from EmailJS Dashboard -> Account)* |
+
+**Note**: The new `EMAILJS_PRIVATE_KEY` does **NOT** have `VITE_` at the start. This is deliberate/secure.
 
 3.  After adding them, go to **Deployments** and click **Redeploy**.
 4.  Then your site will work securely.
 
 ## Security FAQ
 **"Did you hardcode the keys? My repo is public!"**
-**NO.** I did strictly the opposite.
-*   **The Code**: Uses `process.env.VITE_EMAILJS_SERVICE_ID`. This is just a *variable name* (like a placeholder).
-*   **The Value**: Is stored securely in Vercel's settings.
-*   **Result**: Anyone viewing your GitHub code will see *that* you use a key, but they will never see *what* the key is. This is 100% safe.
+## Security FAQ
+**"But wait... the keys still start with `VITE_`? Won't that expose them?"**
+**No, surprisingly!**
+*   Vite only exposes these keys **IF** you use them in your frontend code (`import.meta.env.VITE_...`).
+*   Since I **deleted** those lines from `Contact.tsx`, Vite sees that they are unused in the browser and **does NOT include them**.
+*   They are now only read by the Server (`api/send-email.js`), which is secure.
+
+*Best Practice: In the future, you can rename them in Vercel to remove the `VITE_` prefix (e.g., just `EMAILJS_KEY`) to avoid confusion, but right now they are hidden.*
+
+**"Why did we use `VITE_` names then?"**
+Because originally (Option 1) we were doing it the Client-Side way. When we switched to Backend (Option 2), I kept the names the same **so you wouldn't have to delete and re-enter them in Vercel**. It saves you work!
 
 ### Monitoring the Build
 If you see `tsc -b && vite build` in the logs, **that is good**. It means your site is compiling.
-*   If it fails: It's usually a TypeScript error. Let me know.
-*   If it succeeds: You will see "Complete" or "Success". Then check your site!
+*   If it fails with `Exit Code 2`: Check the logs. If it was an "unused import", I just fixed it.
+*   **Important**: Make sure Vercel is building the **latest commit** (`Fixed unused import...`). If you are looking at the old failure, just wait for the new one!

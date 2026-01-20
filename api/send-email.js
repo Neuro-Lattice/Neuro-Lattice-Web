@@ -6,13 +6,14 @@ export default async function handler(req, res) {
   // Vercel automatically parses JSON body
   const { name, email, company, models, spend } = req.body;
 
-  // Access environment variables securely on the server
+  // Read vars from process.env (Server Side)
   const serviceId = process.env.VITE_EMAILJS_SERVICE_ID;
   const templateId = process.env.VITE_EMAILJS_TEMPLATE_ID;
   const publicKey = process.env.VITE_EMAILJS_PUBLIC_KEY;
+  const privateKey = process.env.EMAILJS_PRIVATE_KEY; // New Requirement
 
-  if (!serviceId || !templateId || !publicKey) {
-    return res.status(500).json({ error: 'Missing backend configuration. Please check Vercel Environment Variables.' });
+  if (!serviceId || !templateId || !publicKey || !privateKey) {
+    return res.status(500).json({ error: 'Missing backend configuration. Need EMAILJS_PRIVATE_KEY.' });
   }
 
   // Construct the template parameters exactly as the frontend did
@@ -39,6 +40,7 @@ Spend: ${spend}
         service_id: serviceId,
         template_id: templateId,
         user_id: publicKey,
+        accessToken: privateKey, // Required for Non-Browser Requests
         template_params: templateParams,
       }),
     });
