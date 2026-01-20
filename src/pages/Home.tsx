@@ -45,7 +45,7 @@ const Home = () => {
               
               <div className="hero-actions-left">
                 <button className="btn-primary hero-btn" onClick={scrollToCalculator}>
-                  Calculate Your Cost Savings <ArrowRight size={18} />
+                  Calculate Your Cost Savings
                 </button>
               </div>
             </motion.div>

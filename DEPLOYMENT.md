@@ -28,9 +28,9 @@ This guide walks you through deploying the application to **Vercel** (recommende
    - Select "Continue with GitHub" and import your `NeuroLattice-web` repository.
 
 2. **Configure Build**:
-   - Vercel will auto-detect "Vite" as the framework.
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist` (default).
+   - **Framework Preset**: Select **Vite** (It usually auto-detects this).
+   - **Build Command**: `npm run build` (or `vite build`).
+   - **Output Directory**: `dist`.
 
 3. **Add Environment Variables (Crucial Step)**:
    - Expand the **"Environment Variables"** section.
@@ -57,6 +57,41 @@ This guide walks you through deploying the application to **Vercel** (recommende
 5. Click **"Deploy site"**.
 
 ---
+
+## Option 3: Setting up the Custom Domain (neuro-lattice.com)
+
+## Cost & Hosting Comparison (AWS vs. Azure vs. Vercel)
+
+Since you are new to web dev, here is the breakdown:
+
+| Provider | Complexity | Estimated Cost (Static Site) | Recommendation |
+| :--- | :--- | :--- | :--- |
+| **Vercel** | **Very Low** (One-click) | **$0 / month** (Hobby Tier) | **✅ Best Choice** |
+| **Netlify** | Very Low | $0 / month (Starter Tier) | Great Alternative |
+| **AWS** (Amplify) | Medium | Free Tier (1 yr) -> Pay per GB | Good if you use AWS |
+| **AWS** (S3+CloudFront)| High (Manual config) | ~$0.50 - $1.00 / month | Overkill |
+| **Azure** | Medium | Free Tier available | Good for MS shops |
+
+**Why Vercel?**
+Your website is a "Static Site" (Frontend only). Vercel hosts these for free on their global CDN. You only pay if you exceed huge bandwidth limits (which takes millions of visitors).
+
+**Current Status:**
+*   ✅ **Code is on GitHub**: Safe and saved.
+*   ❌ **Website is NOT live yet**: You must connect GitHub to Vercel to make it accessible to the world.
+
+## Troubleshooting: "I deployed without Environment Variables!"
+If you forgot to add the keys before clicking Deploy, the contact form **will not work**. To fix it:
+
+1.  Go to your Vercel Project Dashboard.
+2.  Click **Settings** (top tab) → **Environment Variables** (left sidebar).
+3.  Add the 3 keys (`VITE_EMAILJS_...`) one by one.
+4.  **Important**: The changes won't apply to the *current* live site automatically.
+5.  Go to the **Deployments** tab (top).
+6.  Click the **three dots (⋮)** next to the latest deployment → **Redeploy**.
+7.  Click **Redeploy** again in the confirmation popup.
+8.  Wait for the build to finish. Now the contact form will work.
+
+Follow the **Option 1** steps above to finish the process.
 
 ## Option 3: Setting up the Custom Domain (neuro-lattice.com)
 By default, you will get a `.vercel.app` or `.netlify.app` domain. To use `neuro-lattice.com`:
