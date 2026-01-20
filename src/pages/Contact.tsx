@@ -66,42 +66,39 @@ const ValidatedForm = () => {
     if (!isValid) return;
     setIsSending(true);
 
-    // TODO: USER NEEDS TO REPLACE THESE WITH THEIR ACTUAL EMAILJS KEYS
-    // 1. Go to emailjs.com -> Email Templates -> Create New / Edit
-    // 2. Settings key is Template ID
-    // 3. Account -> Public Key
-    // Securely accessed via Environment Variables
-    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID; 
-    const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID; 
-    const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-    // Matches the variables in your Screenshot template: {{title}}, {{name}}, {{message}}
-    const templateParams = {
-      title: `New Inquiry from ${company || 'Website'}`,
-      name: name,
-      email: email, // This aligns with the 'Reply To' field {{email}}
-      message: `
-User Email: ${email}
-Company: ${company || 'N/A'}
-Models: ${models}
-Spend: ${spend}
-      `
-    };
-
     try {
-      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
-      alert('Message sent successfully!');
-      
-      // Reset form
-      setName('');
-      setEmail('');
-      setCompany('');
-      setModels('Computer Vision (ResNet, ViT, etc.)');
-      setSpend('Under $5k');
-    } catch (error) {
+      // Securely send via our Vercel Backend Proxy
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          company,
+          models,
+          spend
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert('Message sent successfully!');
+        // Reset form
+        setName('');
+        setEmail('');
+        setCompany('');
+        setModels('Computer Vision (ResNet, ViT, etc.)');
+        setSpend('Under $5k');
+      } else {
+        throw new Error(data.error || 'Server rejected request');
+      }
+
+    } catch (error: any) {
       console.error('FAILED...', error);
-      // Show the actual error to the user for debugging
-      alert('Failed to send: ' + JSON.stringify(error));
+      alert('Failed to send: ' + error.message);
     } finally {
       setIsSending(false);
     }

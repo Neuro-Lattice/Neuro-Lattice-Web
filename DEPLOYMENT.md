@@ -93,6 +93,18 @@ If you forgot to add the keys before clicking Deploy, the contact form **will no
 
 Follow the **Option 1** steps above to finish the process.
 
+## Updating Your Site (Auto-Deploy)
+Since you connected Vercel to GitHub, **deployment is automatic**.
+
+1.  **Make changes** locally.
+2.  `git add .`, `git commit`, `git push`.
+3.  **Vercel detects the push** and immediately starts building the new version.
+4.  Within 1-2 minutes, your live site (`neuro-lattice.com`) is updated.
+
+**Regarding Environment Variables:**
+*   If you have already added the variables in Vercel Settings, every new push (like the one you just did) will automatically include them.
+*   You do **NOT** need to manually redeploy unless you change variables *without* pushing new code.
+
 ## Option 3: Setting up the Custom Domain (neuro-lattice.com)
 By default, you will get a `.vercel.app` or `.netlify.app` domain. To use `neuro-lattice.com`:
 
@@ -107,10 +119,24 @@ By default, you will get a `.vercel.app` or `.netlify.app` domain. To use `neuro
 5.  **SSL**: Vercel automatically creates an SSL certificate (HTTPS) for your custom domain.
 
 ## Post-Deployment Security (EmailJS)
-Since your keys are public in the browser (necessary for client-side sending), you must restrict *where* they can be used.
+**Important Question: "Doesn't `VITE_` expose these keys to the public?"**
+**Yes, it does.** This is necessary because your website runs in the user's browser, so the browser needs these keys to know where to send the email.
 
-1. Go to your [EmailJS Dashboard](https://dashboard.emailjs.com/admin).
-2. Navigate to **Account** -> **Security** (or API settings).
-3. Look for **"Allowed Domains"** or **Origin Whitelist**.
-4. Add your new Vercel/Netlify domain (e.g., `neurolattice.vercel.app`).
-5. This ensures that even if someone steals your ID, they cannot send emails from their own website.
+**Is it safe?**
+Yes, **IF** you enable the **AllowList**.
+1.  Go to your [EmailJS Dashboard](https://dashboard.emailjs.com/admin).
+2.  Navigate to **Account** -> **Security** (or API settings).
+3.  Look for **"Allowed Domains"** or **Origin Whitelist**.
+4.  Add your domain: `neuro-lattice.com` (and `www.neuro-lattice.com`).
+5.  **Result**: Even though people can see your keys, **they cannot use them** because EmailJS will block any request that doesn't come from your website.
+
+*Note: Never expose your "Private Key". The keys we are using here (Service ID, Template ID, Public Key) are designed for public, client-side use.*
+
+### Advanced: Can I hide them completely?
+**Yes.** To do this, we must move the email logic from the Browser to the Server (a **Vercel Serverless Function**).
+1.  We create a backend API route (e.g., `/api/email`).
+2.  The browser sends the message to *your* backend.
+3.  Your backend (which holds the hidden keys) sends it to EmailJS.
+
+**Trade-off:** This is more complex to set up but is the most secure method.
+**Do you want me to set this up for you?** (Just ask!).
