@@ -19,7 +19,11 @@ export default async function handler(req, res) {
     if (!publicKey) missing.push('VITE_EMAILJS_PUBLIC_KEY');
     if (!privateKey) missing.push('EMAILJS_PRIVATE_KEY');
     
-    return res.status(500).json({ error: `Backend Config Error. Missing keys: ${missing.join(', ')}` });
+    const allKeys = Object.keys(process.env).filter(k => k.startsWith('VITE_') || k.startsWith('EMAILJS'));
+    return res.status(500).json({ 
+      error: `Backend Config Error. Missing keys: ${missing.join(', ')}`,
+      debug: `Available Keys: ${allKeys.join(', ')}`
+    });
   }
 
   // Construct the template parameters exactly as the frontend did
