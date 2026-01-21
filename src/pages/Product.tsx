@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Box, Shield, ArrowRight } from 'lucide-react';
 import './Product.css';
@@ -14,9 +15,7 @@ interface ModeCardProps {
 }
 
 const ModeCard = ({ title, description, visual: Visual, features, badge, isDark = false, link, noButton = false, buttonText }: ModeCardProps & { noButton?: boolean }) => {
-  const navigate = (path: string) => {
-    window.location.href = path;
-  };
+  const navigate = useNavigate();
 
   return (
     <motion.div 
