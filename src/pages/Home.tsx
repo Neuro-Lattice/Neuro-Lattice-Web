@@ -8,6 +8,7 @@ import {
 import './Home.css';
 import { Link } from 'react-router-dom';
 import SavingsCalculator from '../components/SavingsCalculator';
+import SEO from '../components/SEO';
 
 const Home = () => {
   const scrollToCalculator = () => {
@@ -19,6 +20,10 @@ const Home = () => {
 
   return (
     <div className="home-page">
+      <SEO 
+        title="NeuroLattice | 10x Faster Inference & 80% Cost Reduction" 
+        description="Unlock 10x faster AI inference and cut infrastructure costs by 80% with NeuroLattice's structural optimization. Built for high-scale enterprise production workloads." 
+      />
       {/* 1. HERO SECTION */}
       {/* 1. HERO SECTION */}
       <section className="hero-section section-padding">
