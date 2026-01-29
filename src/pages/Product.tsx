@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Box, Shield, ArrowRight } from 'lucide-react';
 import './Product.css';
+import SEO from '../components/SEO';
+
 
 interface ModeCardProps {
   title: string;
@@ -137,6 +139,11 @@ const Product = () => {
 
   return (
     <div className="product-page">
+      <SEO 
+        title="Product & Solutions | NeuroLattice Efficiency Modes" 
+        description="Choose the right efficiency mode for your ML stack: Optimized Models for self-hosting, Managed APIs for low-friction, or Enterprise Runtime for unified scale." 
+        path="/product"
+      />
       <section className="section-padding">
         <div className="container">
           <div className="header-center">

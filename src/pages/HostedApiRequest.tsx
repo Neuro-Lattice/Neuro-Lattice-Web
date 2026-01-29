@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Upload, Cpu, Database, User, ArrowRight, CheckCircle2 } from 'lucide-react';
 import './HostedApiRequest.css';
+import SEO from '../components/SEO';
+
 
 const HostedApiRequest = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -39,6 +41,11 @@ const HostedApiRequest = () => {
 
   return (
     <div className="api-request-page">
+      <SEO 
+        title="Host Your Model | NeuroLattice Hosted API early access" 
+        description="Submit your AI model and training data for structural optimization. Unlock 2.5x throughput on our high-performance infrastructure with our Managed API service." 
+        path="/hosted-api-request"
+      />
       <div className="request-container">
         <div className="request-header">
           <span className="truth-tag">Hosted API</span>

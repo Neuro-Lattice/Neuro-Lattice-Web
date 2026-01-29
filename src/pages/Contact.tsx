@@ -2,10 +2,17 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Building2, TrendingUp } from 'lucide-react';
 import './Contact.css';
+import SEO from '../components/SEO';
+
 
 const Contact = () => {
   return (
     <div className="contact-page">
+      <SEO 
+        title="Contact Us | Request a Custom ML Benchmark" 
+        description="Ready to optimize your AI infrastructure? Contact NeuroLattice to request a dedicated benchmark for your specific models and hardware configuration." 
+        path="/contact"
+      />
       <section className="section-padding">
         <div className="container">
           <div className="contact-grid">

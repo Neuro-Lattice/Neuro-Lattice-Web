@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Github, Server, Zap } from 'lucide-react';
 import './Models.css';
+import SEO from '../components/SEO';
+
 
 const Models = () => {
   // Data extraction completed from user images
@@ -64,6 +66,11 @@ const Models = () => {
 
   return (
     <div className="models-page">
+      <SEO 
+        title="Optimized Models & Benchmarks | NeuroLattice Hub" 
+        description="Explore production-ready, structurally optimized AI models. Reduce latency by 5x and parameters by 80% on standard architectures like ResNet, ViT, and more." 
+        path="/models"
+      />
       <div className="container">
         <div className="models-header">
           <h1 className="page-title">Available Models</h1>

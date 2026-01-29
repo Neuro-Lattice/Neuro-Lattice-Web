@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { TrendingDown, Cpu, BarChart3 } from 'lucide-react';
 import './Proof.css';
+import SEO from '../components/SEO';
 
 const Proof = () => {
   const baselineData = [
@@ -19,6 +20,11 @@ const Proof = () => {
 
   return (
     <div className="proof-page">
+      <SEO 
+        title="Proof of Concept | ResNet-18 Structural Compression" 
+        description="See the hard numbers: How NeuroLattice achieves 96% parameter reduction and 95% memory savings on ResNet-18 architectures with stable accuracy." 
+        path="/proof"
+      />
       <section className="section-padding">
         <div className="container">
           <motion.div 

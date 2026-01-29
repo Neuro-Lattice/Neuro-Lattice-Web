@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Layers, Target, Scissors, Zap, ShieldCheck } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import './HowItWorks.css';
+import SEO from '../components/SEO';
+
 
 interface StepProps {
   id: number;
@@ -96,6 +98,11 @@ const HowItWorks = () => {
 
   return (
     <div className="how-it-works-page">
+      <SEO 
+        title="How It Works | Structural Restructuring Pipeline" 
+        description="Learn about the NeuroLattice restructuring pipeline: from dense model analysis and functional mask learning to physical pruning and stabilized sparse models." 
+        path="/how-it-works"
+      />
       <section className="section-padding">
         <div className="container">
           <div className="header-center">

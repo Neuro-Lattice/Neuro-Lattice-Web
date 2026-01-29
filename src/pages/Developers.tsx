@@ -1,10 +1,16 @@
 import { motion } from 'framer-motion';
 import { Terminal, Code2, Link as LinkIcon, Cpu } from 'lucide-react';
 import './Developers.css';
+import SEO from '../components/SEO';
 
 const Developers = () => {
   return (
     <div className="developers-page">
+      <SEO 
+        title="Developers & API Integration | NeuroLattice ML Stack" 
+        description="Built for ML engineers. Integrate NeuroLattice directly into your training loops. Supports PyTorch, TensorFlow, and JAX with C++ and Python runtimes." 
+        path="/developers"
+      />
       <section className="section-padding">
         <div className="container">
           <div className="dev-grid">
